@@ -1,0 +1,3 @@
+虚拟环境：.venv\Scripts\activate.bat
+生成报告：allure generate reports/allure_temp -o reports/allure_report --clean
+打开报告：allure open reports/allure_report
