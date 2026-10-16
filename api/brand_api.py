@@ -4,24 +4,6 @@ import time
 from config import BASE_URL
 
 
-def auto_create_brand_info():
-
-    timestamp = int(time.time())
-    auto_name = f'auto_name_{timestamp}'
-    auto_firstLetter = auto_name[0]
-
-    auto_info = {
-    "name": auto_name,
-    "firstLetter": auto_firstLetter,
-    "sort": 0,
-    "factoryStatus": 0,
-    "showStatus": 0,
-    "logo": "string",
-    "bigPic": "string",
-    "brandStory": "string"
-    }
-    return auto_info
-
 def brand_create(api_session,brand_info):
     response = api_session.post(
         f'{BASE_URL}/brand/create',
@@ -60,6 +42,42 @@ def brand_list_by_name(api_session,keyword = None,pageNum = 1,pageSize = 5):
         }
     response = api_session.get(
         f'{BASE_URL}/brand/list',
+        params = my_params,
+        timeout = 5
+    )
+    return response
+
+def brand_update_showStatus_batch(api_session,new_showStatus,brand_ids):
+    my_params = {
+        "showStatus" : new_showStatus,
+        "ids" : brand_ids
+    }
+    response = api_session.post(
+        f'{BASE_URL}/brand/update/showStatus',
+        params = my_params,
+        timeout = 5
+    )
+    return response
+
+
+def brand_update_factoryStatus_batch(api_session,new_factoryStatus,brand_ids):
+    my_params = {
+        "factoryStatus" : new_factoryStatus,
+        "ids" : brand_ids
+    }
+    response = api_session.post(
+        f'{BASE_URL}/brand/update/factoryStatus',
+        params = my_params,
+        timeout = 5
+    )
+    return response
+
+def brand_delete_batch(api_session,brand_ids):
+    my_params = {
+        "ids" : brand_ids
+    }
+    response = api_session.post(
+        f'{BASE_URL}/brand/delete/batch',
         params = my_params,
         timeout = 5
     )

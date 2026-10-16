@@ -1,4 +1,5 @@
-from api.brand_api import brand_create,brand_delete,auto_create_brand_info,brand_list_by_name,brand_get_info_by_id
+from api.brand_api import brand_create,brand_delete,brand_list_by_name,brand_get_info_by_id
+from data.factories import auto_create_brand_info
 import pytest
 
 import allure 
