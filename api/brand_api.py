@@ -34,9 +34,10 @@ def brand_delete(api_session,brand_id):
     )
     return response
 
-def brand_list_by_name(api_session,keyword = None,pageNum = 1,pageSize = 5):
+def brand_list_by_name(api_session,keyword = None,showStatus = None,pageNum = 1,pageSize = 5):
     my_params = { ##如何传递参数：准备一个字典，左边的键名就是后端规定的名字
             "keyword" : keyword,
+            "showStatus" : showStatus,
             "pageNum" : pageNum,
             "pageSize" : pageSize,
         }
@@ -79,6 +80,13 @@ def brand_delete_batch(api_session,brand_ids):
     response = api_session.post(
         f'{BASE_URL}/brand/delete/batch',
         params = my_params,
+        timeout = 5
+    )
+    return response
+
+def brand_list_all(api_session):
+    response = api_session.get(
+        f'{BASE_URL}/brand/listAll',
         timeout = 5
     )
     return response

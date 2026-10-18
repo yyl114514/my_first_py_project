@@ -26,8 +26,8 @@ def test_brand_create(api_session):
         assert brand_id is not None
     finally:
         if brand_id is not None:
-            # brand_delete(api_session,brand_id)
-            print(f'清理数据,删除品牌id={brand_id}')
+            brand_delete(api_session,brand_id)
+            
 
 
 @allure.epic('我的第一个pytest项目')

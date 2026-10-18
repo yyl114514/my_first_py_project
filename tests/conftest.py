@@ -2,7 +2,7 @@ import pytest
 import allure
 from api.login_api import create_authorized_session
 
-
+pytest.register_assert_rewrite("common.assertions")
 @pytest.fixture(scope="session")
 def api_session():
     session = create_authorized_session()
